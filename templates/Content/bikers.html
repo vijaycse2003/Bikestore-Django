@@ -1,0 +1,114 @@
+{% extends '../index.html' %} 
+
+{% block title %} StoreRoom | Bike Collections{% endblock title %} 
+
+
+
+{% block content %}
+
+
+<section class=" py-4 my-5">
+  <div class="container">
+      <div class="col-12">
+          <div class="row">
+            <nav aria-label="breadcrumb col-lg-5 mb-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <i class="fa fa-home"></i><a href="{% url 'home' %}">Home</a>
+                    </i>
+                            <li class="breadcrumb-item active" aria-current="page">
+                            Collections</i>
+                        </ol>
+                    </nav>
+              <h4 class="mb-3">Bike Collection in Storeroom</h4>
+              <hr style="border-color:#000;">
+            </div>
+            <div class="row">
+              {% for item in products %}
+              <div class="col-md-4 col-lg-4 box">
+                  <div class="card my-4  p-5"> <img src="{{ item.product_image }}" width="350" height="300"  alt="Categories">
+                  <a href="{% url 'detail' item.category.name item.name %}" style="text-decoration:none;">
+                      <div class="card-body">
+                          <h4 class="card-title text-success">{{ item.name }}</h4>
+                          <p class="text-dark">Price from <span style="font-weight:800;color:#67006798;">&#8377;{{item.price}} Onwards</span></p>
+                          <div class="btn-group">
+                            <button class="btn btn-light fw-4" style="border:2px solid brown;width:300px"><span>More details</span></button>
+                          </div>
+                      </div>
+                  </a>
+                  
+              </div>
+          </div>
+      {% endfor %}
+      </div>
+  </div>
+</div>
+</section>
+
+{% endblock content %}
+
+
+{% block styles %}
+<style>
+    .card{
+        background:#010028;
+        overflow: hidden;
+        /* border-top:1px solid #ff313180;
+        border-right:1px solid #00ffff80; */
+        border-bottom:1px solid #39ff1480;
+        /* border-left:1px solid #e3e32380; */
+    }
+    .card::after{
+      content: 'Special Bike Offer Sales';
+      transition:1s;
+      color:#fffcfc;
+      font-size: 1.5rem;
+      margin: 0 auto;
+      text-align: center;
+      background:#90006a;
+      position: absolute;
+      top: 0;
+      border-bottom-right-radius:20%;
+      left: 0;
+      z-index:-200;
+      width:462px;
+      height:40px;
+    }
+    .card:hover{
+      opacity:.9;
+      transition:.3s;
+      animation:ani 3s linear infinite;
+    }
+    @keyframes ani{
+      0%{
+        border-left:3px solid #ffff7180;
+        transition: cubic-bezier(0.215, 0.610, 0.355, 1);
+        transition-delay:1s;
+      }
+      25%{
+         border-bottom:3px solid linear-gradient(red,blue,green);
+        transition: cubic-bezier(0.215, 0.610, 0.355, 1);
+        transition-delay:1s;
+      }
+      50%{
+        border-right:3px solid #00ffff80;
+        transition: cubic-bezier(0.215, 0.610, 0.355, 1);
+        transition-delay:1s;
+      }
+      75%{
+        border-top:3px solid #ff313180;
+        transition: cubic-bezier(0.215, 0.610, 0.355, 1);
+        transition-delay:1s;
+      }
+      100%{
+        border-left:3px solid #ffff7180;
+        transition: cubic-bezier(0.215, 0.610, 0.355, 1);
+        transition-delay:1s;
+      }
+    }
+ 
+
+</style>
+{% endblock styles %}
+
+ 
